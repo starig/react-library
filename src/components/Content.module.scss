@@ -1,0 +1,27 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-gap: 25px;
+  justify-content: center;
+  padding: 50px 0;
+
+}
+
+.container {
+  display: grid;
+
+  .title {
+    justify-self: center;
+  }
+
+  .loaderGif {
+    width: 45px;
+    justify-self: center;
+  }
+
+  .loadmore {
+    justify-self: center;
+    margin-bottom: 40px;
+  }
+}
+

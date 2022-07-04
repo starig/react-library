@@ -1,0 +1,11 @@
+.item {
+  border: lightgrey 1px solid;
+  display: grid;
+  padding: 10px 5px;
+
+  .img {
+    justify-self: center;
+    height: 250px;
+  }
+
+}

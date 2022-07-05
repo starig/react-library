@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {changeValue} from "../../redux/slices/searchSlice";
 import debounce from 'lodash.debounce';
-import {fetchBooks, filterItems, onNewSearchValue, setCategory} from "../../redux/slices/itemsSlice";
+import {fetchBooks, onNewSearchValue, setCategory} from "../../redux/slices/itemsSlice";
 import {Link, useLocation, useParams} from "react-router-dom";
 import Filter from "../Filter/Filter";
 import Sort from "../Sort/Sort";
@@ -41,7 +41,6 @@ const Header = () => {
     const onClickSearch = async () => {
         try {
             dispatch(fetchBooks({inputValue, page, sortValue}));
-            dispatch(filterItems());
         } catch (e) {
             console.error(e);
         }

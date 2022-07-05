@@ -67,7 +67,7 @@ const Header = () => {
     return (
         <div className={styles.header}>
             <Link to={'/'}>
-                <h3>Search your book</h3>
+                <h3 className={styles.title}>Search your book</h3>
             </Link>
             <div>
                 <div className={styles.search}>

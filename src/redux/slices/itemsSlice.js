@@ -43,11 +43,9 @@ export const itemsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
             if (state.activeCategory !== 'All') {
-                console.log(action.payload.items)
                 action.payload.items = action.payload.items.filter(function (item) {
                     return item.volumeInfo.categories?.includes(state.activeCategory)
                 });
-                console.log(action.payload)
             }
             if (state.loadMore) {
                 state.items.items = [...state.items.items, ...action.payload.items]

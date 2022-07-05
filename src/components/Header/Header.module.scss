@@ -3,15 +3,30 @@
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 320px) {
+    display: unset;
+  }
+
   .sorting {
     display: flex;
     align-items: center;
     width: 400px;
     justify-content: space-between;
+
+    @media (max-width: 410px) {
+      width: 350px;
+    }
+
+    @media (max-width: 320px) {
+      width: 300px;
+      justify-content: space-around;
+    }
+
   }
   .search {
     display: flex;
     position: relative;
+    justify-content: center;
 
     .input {
       height: 24px;
@@ -19,6 +34,10 @@
       border: darkgrey 1px solid;
       border-radius: 5px;
       padding: 0 10px;
+      
+      @media (max-width: 410px) {
+        width: 250px;
+      }
     }
 
     .searchImg {
@@ -30,6 +49,10 @@
       right: 5px;
       top: 5px;
       padding-left: 5px;
+
+      @media (max-width: 410px) {
+        right: 45px;
+      }
 
       &:hover {
         cursor: pointer;
@@ -50,6 +73,10 @@
       right: 30px;
       top: 4px;
 
+      @media (max-width: 410px) {
+        right: 65px;
+      }
+
       &:hover {
         opacity: 0.8;
         cursor: pointer;
@@ -57,5 +84,15 @@
     }
 
   }
+
+  .loaderContainer {
+    display: flex;
+    justify-content: center;
+    .loader {
+      height: 60px;
+      text-align: center;
+    }
+  }
+
 
 }

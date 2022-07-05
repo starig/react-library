@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Bookpage.module.scss';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchBook} from "../redux/slices/bookSlice";
 import loader from './../assets/loader.gif';
@@ -30,21 +30,27 @@ const BookPage = () => {
 
 
     return (
-        <div className={styles.bookpage}>
+        <div>
             {
-                isLoading && <div>
+                isLoading ? <div className={styles.loader}>
                     <img src={loader} alt={'loading'} />
+                </div> : <div className={styles.bookpage}>
+                    <div className={styles.imageBlock}>
+                        <img className={styles.image} src={imgUrl ? imgUrl : emptyImg} alt={'Book image'}/>
+                    </div>
+                    <div className={styles.info}>
+                        <div className={styles.category}>Категории: {categories}</div>
+                        <div className={styles.title}>Название: {title}</div>
+                        <div className={styles.authors}>Авторы: {authors}</div>
+                        <div className={styles.subtitle}>Описание: {subtitle}</div>
+                    </div>
                 </div>
             }
-            <div className={styles.imageBlock}>
-                <img className={styles.image} src={imgUrl ? imgUrl : emptyImg} alt={'Book image'}/>
-            </div>
-            <div className={styles.info}>
-                <div className={styles.category}>{categories}</div>
-                <div className={styles.title}>{title}</div>
-                <div className={styles.authors}>{authors}</div>
-                <div className={styles.subtitle}>{subtitle}</div>
-            </div>
+            <Link to={'/'}>
+                <div className={styles.footer}>
+                    <button className={styles.backButton}>back</button>
+                </div>
+            </Link>
         </div>
     )
 }

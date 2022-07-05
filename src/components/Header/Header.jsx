@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import searchImg from "../../assets/search.png";
 import styles from './Header.module.scss';
 import {useDispatch, useSelector} from "react-redux";
@@ -8,15 +8,17 @@ import {fetchBooks, onNewSearchValue, setCategory} from "../../redux/slices/item
 import {Link, useLocation, useParams} from "react-router-dom";
 import Filter from "../Filter/Filter";
 import Sort from "../Sort/Sort";
+import loader from "../../assets/loader.gif";
 
 const Header = () => {
 
     const {inputValue, sortValue} = useSelector((state) => state.search);
-    const page = useSelector(state => state.items.page);
+    const {page, isLoading} = useSelector(state => state.items);
     const dispatch = useDispatch();
     const [value, setValue] = useState('');
     const { pathname } = useLocation();
     const params = useParams();
+    const inputRef = useRef(null);
 
     const updateSearchValue = useCallback(
 
@@ -49,7 +51,7 @@ const Header = () => {
     useEffect(() => {
         const keyDownHandler = event => {
 
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && document.activeElement === inputRef.current) {
                 event.preventDefault();
                 onClickSearch(inputValue, page)
             }
@@ -70,6 +72,7 @@ const Header = () => {
             <div>
                 <div className={styles.search}>
                     <input value={value}
+                           ref={inputRef}
                            disabled={pathname === `/book/${params.id}`}
                            onChange={onChangeInput}
                            className={styles.input}/>
@@ -89,6 +92,11 @@ const Header = () => {
                     <Filter />
                     <Sort />
                 </div>
+                {
+                    isLoading && <div className={styles.loaderContainer}>
+                        <img src={loader} alt={'loading'} className={styles.loader}/>
+                    </div>
+                }
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ const Sort = () => {
 
     const dispatch = useDispatch();
     const {inputValue, sortValue} = useSelector(state => state.search);
-    const { page, items, isLoading } = useSelector(state => state.items);
+    const { page, items } = useSelector(state => state.items);
     const { pathname } = useLocation();
     const params = useParams();
 
@@ -32,9 +32,7 @@ const Sort = () => {
             <button disabled={items.length === 0 || pathname === `/book/${params.id}`} className={`${styles.sortItem} ${sortValue === 'newest' && styles.active}`} onClick={setNewest}>
                 Newest
             </button>
-            {
-                isLoading && <img src={loader} alt={'loading'} className={styles.loader}/>
-            }
+
         </div>
     )
 }

@@ -6,10 +6,10 @@ const Item = ({title, authors, category, imgUrl}) => {
     return (
         <div className={styles.item}>
             <img src={imgUrl ? imgUrl : img} alt='book' className={styles.img}/>
-            <div className='itemCategory'>{category ? category : 'Без категории'}</div>
-            <div className='itemTitle'>{title}</div>
+            <div className={styles.category}>Категория: {category ? category : 'Без категории'}</div>
+            <div className={styles.title}>Название: {title}</div>
             <div className='itemAuthor'>
-                {authors ? authors.map(item => item) : 'Автор не указан'}
+                Автор: {authors ? authors.map(item => item) : 'Автор не указан'}
             </div>
         </div>
     )

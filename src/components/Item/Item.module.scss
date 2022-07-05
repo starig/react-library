@@ -3,11 +3,26 @@
   display: grid;
   padding: 10px 5px;
   overflow: hidden;
+  height: 400px;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
   .img {
     justify-self: center;
     height: 250px;
     max-width: 300px;
+  }
 
+  .category {
+    font-weight: 500;
+  }
+
+  .title {
+    font-weight: 500;
   }
 
 }

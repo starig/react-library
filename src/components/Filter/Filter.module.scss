@@ -1,0 +1,39 @@
+.filter {
+  display: grid;
+
+  .activeFilter {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    justify-self: center;
+    color: #3D2B3D;
+  }
+
+  .filterPopup {
+    display: grid;
+    position: absolute;
+    margin-top: 50px;
+    background-color: #FFA987;
+    .popupItem {
+      cursor: pointer;
+      height: 30px;
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      color: #FFF;
+      font-weight: 500;
+      
+      &:hover {
+        background-color: #E54B4B;
+        color: #fff;
+      }
+    }
+    .active {
+      background-color: #E54B4B;
+      color: #fff;
+    }
+  }
+}

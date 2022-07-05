@@ -1,0 +1,40 @@
+.container {
+  display: grid;
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    grid-gap: 25px;
+    justify-content: center;
+    padding: 50px 0;
+
+    @media(max-width: 1440px) {
+      grid-template-columns: repeat(3, 300px);
+    }
+
+    @media(max-width: 940px) {
+      grid-template-columns: repeat(2, 300px);
+    }
+
+    @media(max-width: 545px) {
+      grid-template-columns: repeat(1, 300px);
+    }
+
+
+  }
+
+  .title {
+    justify-self: center;
+  }
+
+  .loaderGif {
+    width: 45px;
+    justify-self: center;
+  }
+
+  .loadmore {
+    justify-self: center;
+    margin-bottom: 40px;
+  }
+}
+

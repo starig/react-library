@@ -1,17 +1,22 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import searchImg from "../assets/search.png";
+import searchImg from "../../assets/search.png";
 import styles from './Header.module.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {changeValue} from "../redux/slices/searchSlice";
+import {changeValue} from "../../redux/slices/searchSlice";
 import debounce from 'lodash.debounce';
-import {fetchBooks, onNewSearchValue} from "../redux/slices/itemsSlice";
+import {fetchBooks, filterItems, onNewSearchValue, setCategory} from "../../redux/slices/itemsSlice";
+import {Link, useLocation, useParams} from "react-router-dom";
+import Filter from "../Filter/Filter";
+import Sort from "../Sort/Sort";
 
 const Header = () => {
 
-    const inputValue = useSelector((state) => state.search.inputValue);
+    const {inputValue, sortValue} = useSelector((state) => state.search);
     const page = useSelector(state => state.items.page);
     const dispatch = useDispatch();
     const [value, setValue] = useState('');
+    const { pathname } = useLocation();
+    const params = useParams();
 
     const updateSearchValue = useCallback(
 
@@ -29,12 +34,14 @@ const Header = () => {
     const onClickCross = () => {
         dispatch(changeValue(''));
         dispatch(onNewSearchValue());
+        dispatch(setCategory('All'));
         setValue('');
     }
 
-    const onClickSearch = async (q, page) => {
+    const onClickSearch = async () => {
         try {
-            dispatch(fetchBooks({q, page}));
+            dispatch(fetchBooks({inputValue, page, sortValue}));
+            dispatch(filterItems());
         } catch (e) {
             console.error(e);
         }
@@ -58,10 +65,13 @@ const Header = () => {
 
     return (
         <div className={styles.header}>
-            <h3>Search your book</h3>
+            <Link to={'/'}>
+                <h3>Search your book</h3>
+            </Link>
             <div>
                 <div className={styles.search}>
                     <input value={value}
+                           disabled={pathname === `/book/${params.id}`}
                            onChange={onChangeInput}
                            className={styles.input}/>
                     {value && <svg className={styles.closeIcon} onClick={onClickCross}
@@ -73,14 +83,12 @@ const Header = () => {
                         </g>
                     </svg>}
                     <img className={styles.searchImg} src={searchImg} alt={'search'}
-                         onClick={() => onClickSearch(inputValue, page)}
+                         onClick={onClickSearch}
                     />
                 </div>
-                <div className="categories">
-                    categories popup
-                </div>
-                <div className="sorting">
-                    sorting by
+                <div className={styles.sorting}>
+                    <Filter />
+                    <Sort />
                 </div>
             </div>
         </div>

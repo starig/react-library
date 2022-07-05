@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Item.module.scss';
-import img from './../assets/book.jpg'
+import img from '../../assets/book.jpg'
 
 const Item = ({title, authors, category, imgUrl}) => {
     return (

@@ -1,13 +1,17 @@
 import React from 'react';
-import Header from "./components/Header";
-import Content from "./components/Content";
+import Content from "./components/Content/Content";
+import {Route, Routes} from "react-router-dom";
+import BookPage from "./pages/BookPage";
+import MainPage from "./pages/MainPage";
 
 const App = () => {
     return (
-        <div>
-            <Header/>
-            <Content/>
-        </div>
+        <Routes>
+            <Route path={'/'} element={<MainPage />}>
+                <Route path={''} element={<Content />} />
+                <Route path={'/book/:id'} element={<BookPage />} />
+            </Route>
+        </Routes>
     )
 }
 

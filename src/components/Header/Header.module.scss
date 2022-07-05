@@ -3,14 +3,19 @@
   justify-content: center;
   align-items: center;
 
-
+  .sorting {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    justify-content: space-between;
+  }
   .search {
     display: flex;
     position: relative;
 
     .input {
       height: 24px;
-      width: 200px;
+      width: 380px;
       border: darkgrey 1px solid;
       border-radius: 5px;
       padding: 0 10px;

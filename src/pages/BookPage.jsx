@@ -11,7 +11,7 @@ const BookPage = () => {
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.book.isLoading);
     const { title, authors, categories, subtitle} = useSelector(state => state.book.book.volumeInfo);
-    const imgUrl = useSelector(state => state.book.book.volumeInfo.imageLinks.medium);
+    const imgUrl = useSelector(state => state.book.book.volumeInfo.imageLinks?.medium);
 
     const fetchItem = async () => {
         try {
